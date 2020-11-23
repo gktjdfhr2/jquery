@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery1-2</title>
+
+    <script src="./jquery-3.5.1.js"></script>
+
+
+    <script>
+        // jquery 사용방법 : jquery는 기본적으로 $ 기호를 사용함
+        // - $기호가 나오면 jquery를 사용한다는 의미
+        // - $(css 선택자).jquery함수();
+        // - jquery 선택자를 그대로 사용하기 때문에 #은 id선택자, .은 class선택자, html태그는 태그 선택자로 동작함.
+        // - jquery는 기본적으로 자바스크립트 문법을 그대로 사용하기 때문에 jqeury 함수를 제왜하고는 자바스크립트와 동일함
+
+        // query를 이용하여 html 태그가 모두 로딩된 후 자바스크립트가 로딩되게 하는 이벤트
+
+        // 마우스 이벤트
+        // - click : 마우스의 클릭 이벤트 발생
+        // - dblclick : 마우스 왼쪽 더블 클릭 이벤트 발생
+        // - contextmenu : 마우스 오른쪽 버튼 크릭 이벤트 발생
+        // - mouseenter : 마우스 포인터가 특정 html 태그 위로 올라갈 경우 발생
+        // - mouseleave : 마우스 포이트가 특정 html 태그 위를 떠나갈 경우 발생
+
+        // form 이벤트
+        // - submit : input 태그의 type:submit 버튼이 클릭 되었을 경우 발생
+        // - change : input 태그의 value 값이 변경될 경우 발생
+        // - focus : input 태그에 focus 가 주어졌을 경우 발생
+        // - blur : input 태그에 focus가 잃었을 경우 발생
+
+        // 문서/윈도우 이벤트
+        // - load : 해당 페이지가 로드될 경우 발생
+        // - resize : 해당 브라우저 창 크기가 변경될 경우 발생
+        // - scroll : 마우스 스크롤이 발생할 경우 발생
+        // - unload : 해당 페이지가 종료되었을 경우 발생
+
+
+        $(document).ready(function () {
+            // 클릭 이벤트를 직접 실행
+            $("#target").click(function () {
+                alert("클릭했습니다.")
+            });
+
+            // 클릭 이벤트를 이벤트 리스너에 등록하여 동작
+            $("#other").on("click", function () {
+                $("#target").click()
+            });
+
+            $(".red").on("click", function () {
+                alert("마우스 왼쪽 버튼 클릭했습니다.");
+            });
+            $(".red").on("dblclick", function () {
+                alert("마우스 왼쪽 버튼 더블 클릭했습니다.");
+            });
+            $(".green").on("mouseenter", function () {
+                alert("마우스가 green 태그 안으로 들어갔습니다.");
+            });
+            $(".green").on("mouseleave", function () {
+                alert("마우스가 green 태그 밖으로 나갔습니다.");
+            });
+            $(".blue").on("contextmenuk", function () {
+                alert("마우스 오른쪽 버튼 클릭했습니다.");
+            });
+            $(".red").on("mousemove", function () {
+                var x = event.pageX;
+                var y = event.pageY;
+
+                console.log(" x 좌표 :" + x + "y 좌표 :" + y);
+            });
+
+            $("#keyboardEvent").on("keydown", function() {
+                $("#keyboardEvent").css("background-color","blue");
+            });
+
+            $("#keyboardEvent").on("keyup", function() {
+                $("#keyboardEvent").css("background-color","green");                
+            });
+
+            //form 이벤트
+            $("#formEvent").on("focus",function() {
+                $("#formEvent").css("font-size","36px");
+            });
+            
+            $("#formEvent").on("blur",function() {
+                $("#formEvent").css("font-size", "15px");
+            });
+            $("#formEvent").on("change",function() {
+                $("#formEvent").css("background-color","yellow");
+            });
+
+            // 문서 / 윈도우 이벤트
+            $(window).on("resize", function() {
+                alert("브라우저 창의 크기를 조절했습니다.");
+            });
+
+            $(".scroll").on("scroll", function() {
+                $("span").css("display","inline").fadeOut("slow");
+            });
+
+        });
+    </script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+            width: 300px;
+            height: 300px;
+        }
+        .scroll {
+            width: 300px;
+            height: 200px;
+            overflow-y: scroll;
+        }
+        .span {
+            color: red;
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="target">
+        Click here
+    </div>
+    <div id="other">
+        Trigger the handler
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div class="box red"></div>
+    <div class="box green">
+        <div class="box blue"></div>
+    </div>
+
+
+    <h3>키보드 이벤트</h3>
+    <input type="text" id="keyboardEvent">
+
+    <br><hr><br>
+
+    <h3>form 이벤트</h3>
+    <input type="text" id="formEvent" value="adsfasdf">
+
+    <br><hr><br>
+
+    <h3>문서 / 윈도우 이벤트</h3>
+    <div class="box scroll">
+        <p>공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다. 체포·구속·압수 또는 수색을 할 때에는 적법한 절차에 따라 검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다. 다만, 현행범인인 경우와 장기 3년 이상의 형에 해당하는 죄를 범하고 도피 또는 증거인멸의 염려가 있을 때에는 사후에 영장을 청구할 수 있다.</p>
+        
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+        <p>scroll 이벤트 - <span>이벤트 동작</span></p>
+    </div>
+
+</body>
+
+</html>l

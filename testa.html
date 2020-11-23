@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.1.js">
+    // 문제 1) animate함수를 사용하여 div태그의 위치를 왼쪽에서 오른쪽으로 300px 이동 시키고, 이동 이동 후 div 태그 내의 p 태그의 글자가 8px로 작아졌다가 다시 24px로 커지는 애니메이션을 완성하시오
+    // -div 태그의 크기 width:200px,height:200px
+    // -p태그의 글자 :hello(시작시 글자 크기:16px/1cm, 작아졌을 경우 : 8px/0.5cm, 커졋을 경우 : 24px/ 2cm) 
+
+    // stop() : 애니메이션의 효과가 끝나기 전에 애니메이션을 중지시키는 함수
+    // 사용법
+    // $(선택자).stop(stopAll.goToEnd)
+    // - stopAll : 기본값 false, 애니메이션 대기열도 함께 중지하는지 여부
+    // - goToEnd : 기본값 false, 애니메이션이 stop()함수 실행과 동시에 완료로 처리할 것인 여부 
+    
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#div01 > .ani1").on("click", function(){
+                
+                $("#div01 > .ani1").animate({
+                    left : "300px"
+                });
+                $("#div01 .word").animate({
+                    fontSize:"8px"
+                });
+                $("#div01 .word").animate({
+                    fontSize:"24px"
+                });
+            });
+        
+            
+        })
+    </script>
+    <style>
+        #div01 > .box{
+            position: relative;
+        }
+        .box{
+            width: 200px;
+            height: 200px;            
+        }
+        
+        
+        .word {
+            font-size: 16px;
+            color: black;              
+        }
+    </style>
+</head>
+<body>
+    <div id="div01">
+        <div class="box ani1"><p class="word">hello</p></div>
+        
+    </div>
+</body>
+</html>
