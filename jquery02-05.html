@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btnAddClass").on("click", function(){
+                $("#div01 > h1, #div01 > h2, #div01 > p").addClass("blue");
+            $("#div01 > div").addClass("important");
+            });
+
+            $("#btnAddClass2").on("click", function(){
+                $("#div01>div").addClass("important blue")
+            });
+
+            $("#btnRemoveClass").on("click",function(){
+                $("#div02 > h1, #div02 > h2, #div02 > p").removeClass("blue");
+            });
+
+            //ToggleClass 사용하기
+            // 문제 2) toggleClass를 사용하여 버튼 클릭 시 아래 h1, h2, p 태그에 클래스를 적용/미 적용 시키세요
+            
+            $("#btnToggleClass").on("click", function() {
+                $("#div03 > h1, #div03 > h2, #div03 > p").toggleClass("blue");
+            });
+
+            // css() : addClass, removeClass, toggleClass는 미리 생성되어 있는 css Class를 추가/삭제 하는 것이지 만 css()함수는 직접 CSs속성명 및 속성값을 가져오거나 설정하는 함수
+                // - $(선택자).css("속성명") : 선택한 요소의 지정한 속성값을 가져옴
+        })
+    </script>
+
+    <style>
+        .important {
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        .blue { color: blue;}
+    </style>
+</head>
+<body>
+    <div id="div01">
+        <h3>addClass 사용하기</h3>
+        <button id="btnAddClass">클릭 시 클래스 추가</button>
+        <button id="btnAddClass2">클릭 시 클래스 동시 2개 입력</button>
+        <h1>클래스가 적용되지 않는 h1</h1>
+        <h2>클래스가 적용되지 않는 h2</h2>
+        <p>클래스가 적용되지 않는 p 태그</p>
+        <p>클래스가 적용되지 않는 p 태그 2</p>
+        <div>클래스가 적용되지 않는 div 텍스트</div>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div02">
+        <h3>removeClass 사용하기</h3>    
+        <button id="btnRemoveClass">클릭 시 적용된 Class삭제</button>
+
+        <h1 class="blue">클래스가 적용된 h1 태그</h1>
+        <h2 class="blue">클래스가 적용된 h2 태그</h2>
+        <p class="blue">클래스가 적용된 p 태그</p>
+        <p >클래스가 적용되지 않은 p 태그</p>
+    </div>
+
+    <div id="div03">
+        <h3>toggleClass</h3>
+
+        <button id="btnToggleClass">클릭시</button>
+        <h1>클래스가 적용/미적용될 h1</h1>
+        <h2 class="blue">클래스가 적용/미적용될 h2</h2>
+        <p>클래스가 적용/미적용될 p</p>
+        <p class="blue">클래스가 적용/미적용될 h1</p>
+    </div>
+
+</body>
+</html>

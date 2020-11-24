@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 2-1</title>
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        // jquery 콜백 함수: 현재 효과가 완료된 후 실행되는 함수
+        // 동기 처리 방식 - 요청을 보낸 후 해당 응답을 받아야 다음 동작을 실행
+        // 비동기 처리 방식 - 요청을 보낸 후 응답에 관계 없이 다음 동작을 실행
+        // 비동기 방식 사용 이유 - 자바스크립트는 웹에서 사용되고 있고, 서버에 요청을 보낸 후 서버에서 응답이 없을 경우에도 나머지 부분을 처리를 해야하기 때문에 비동기 방식을 사용, 해당 으답이 온 후 필요한 작업을 진행함
+        
+
+        
+        $(document).ready(function() {
+            $("#btncall").on("click",function() {
+                $("#pCall").hide("slow",function() {
+                    // alert("p태그 숨겨짐");
+                    console.log("p태그 숨겨짐","콜백 함수 사용");
+                });
+
+            });
+            $("#btncall2").on("click", function() {
+                $("#pCall2").hide("slow");
+                // alert("p태그 숨겨짐");
+                console.log("p태그 숨겨짐","콜백 함수 미사용");
+            });
+
+            $("#btncall3").on("click", function() {
+                console.log("버튼3 : 출력1");
+                console.log("버튼3 : 출력2");
+                console.log("버튼3 : 출력3");
+                console.log("-------------");   
+                             
+            });
+
+            $("#btncall4").on("click", function() {
+                console.log("버튼4 : 출력1");
+                setTimeout(function(){console.log("버튼4 : 출력2")},2000);
+                
+                console.log("버튼4 : 출력3");
+                console.log("-------------");                
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>콜백 함수 사용</h3>
+    <button id="btncall">Hide</button>
+    <p id = "pCall">버튼 클릭 시 숨겨질 p태그</p>
+
+    <br><hr><br>
+
+    <h3>콜백 함수 미사용</h3>
+    <button id="btncall2">Hide</button>
+    <p id = "pCall2">버틑 클릭 시 숨겨질 p태크</p>
+
+    <br><hr><br>
+
+    <button id="btncall3">클릭 시 콘솔창에 입력</button>
+    <button id="btncall4">클릭 시 콘솔창에 입력</button>
+
+</body>
+</html>
