@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.1.js">
+    // 형제 태그 선택하기
+    // silblings() : 선택한 요소의 모든 형제 요소를 선택
+    // next() : 선택한 요소의 바로 다음 형제 요소를 선택
+    // nextAll() : 선택한 요소의 바로 다음부터 끝까지 모든 형제 요소를 선택
+    // prev() : 선택한 요소의 바로 이전 형제 요소를 선택
+    // prevAll() : 선택한 요소의 바로 이전부터 시작까지의 모든 형제 요소를 선택
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#div01 > div").children().css({
+                "color":"red",
+                "border":"2px solid red"
+            });
+
+            $("#div02 > div").children(".first").css({
+                "color":"red",
+                "border":"2px solid red"
+            });
+
+            $("#div03 > div").find("span").css({
+                "color":"red",
+                "border":"2px solid red"
+            });
+            
+        });
+    </script>
+
+    <style>
+        .desc * {
+            display: block;
+            border: 2px solid lightgray;
+            color: lightgray;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div01">
+        <div class="desc">
+            <p class="first">p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+            <p class="second">p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+        </div>
+    </div>
+    <br><hr><br>
+
+    <div id="div02">
+        <div class="desc">
+            <p class="first">p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+            <p class="second">p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="div03">
+        <h3>find() 사용</h3>
+        <div class="desc">지정한 div 태그
+            <p>p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+            <p>p (직계 자손)
+                <span >span(후손 1단계)</span>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
